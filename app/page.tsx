@@ -1,7 +1,10 @@
+"use client"
+
 import { FeaturedCard } from "@/components/featured-card"
 import { NewsCard } from "@/components/news-card"
 import { DynamicHeader } from "@/components/dynamic-header"
 import { InspirationSection } from "@/components/inspiration-section"
+import { motion } from "framer-motion"
 
 export default function Home() {
   // Enhanced placeholder data
@@ -107,50 +110,76 @@ export default function Home() {
     },
   ]
 
-  return (
-    <div className="space-y-12 py-8">
-      <DynamicHeader />
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  }
 
-      <section>
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } },
+  }
+
+  return (
+    <motion.div className="space-y-12 py-8" initial="hidden" animate="show" variants={container}>
+      <motion.div variants={item}>
+        <DynamicHeader />
+      </motion.div>
+
+      <motion.section variants={item}>
         <h2 className="text-3xl font-bold mb-6">Featured Boutiques</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {featuredBoutiques.map((boutique, index) => (
-            <FeaturedCard key={index} {...boutique} />
+            <motion.div key={index} variants={item}>
+              <FeaturedCard {...boutique} />
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
-      <section>
+      <motion.section variants={item}>
         <h2 className="text-3xl font-bold mb-6">Featured Designers</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {featuredDesigners.map((designer, index) => (
-            <FeaturedCard key={index} {...designer} />
+            <motion.div key={index} variants={item}>
+              <FeaturedCard {...designer} />
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
-      <section>
+      <motion.section variants={item}>
         <h2 className="text-3xl font-bold mb-6">Inspiration Corner</h2>
         <InspirationSection />
-      </section>
+      </motion.section>
 
-      <section>
+      <motion.section variants={item}>
         <h2 className="text-3xl font-bold mb-6">Community News</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {communityNews.map((news, index) => (
-            <NewsCard key={index} {...news} />
+            <motion.div key={index} variants={item}>
+              <NewsCard {...news} />
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
-      <section>
+      <motion.section variants={item}>
         <h2 className="text-3xl font-bold mb-6">Industry News</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {industryNews.map((news, index) => (
-            <NewsCard key={index} {...news} />
+            <motion.div key={index} variants={item}>
+              <NewsCard {...news} />
+            </motion.div>
           ))}
         </div>
-      </section>
-    </div>
+      </motion.section>
+    </motion.div>
   )
 }

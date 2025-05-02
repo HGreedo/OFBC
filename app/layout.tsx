@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/navbar"
+import { PageTransition } from "@/components/page-transition"
 import { cn } from "@/lib/utils"
 import "@/styles/globals.css"
 import { Montserrat } from "next/font/google"
@@ -22,7 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn("min-h-screen bg-background font-sans antialiased", montserrat.className)}>
         <Navbar />
-        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main>
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <footer className="mt-12 py-6 bg-gray-100">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row justify-between items-center">
