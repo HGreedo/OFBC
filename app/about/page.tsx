@@ -24,7 +24,7 @@ export default function AboutPage() {
     <div className="space-y-6">
       <h1 className="text-3xl font-bold">About FashionBuyersClub</h1>
 
-      <Card className="bg-secondary border border-border">
+      <Card>
         <CardHeader>
           <CardTitle>Platform Description</CardTitle>
         </CardHeader>
@@ -39,7 +39,7 @@ export default function AboutPage() {
         </CardContent>
       </Card>
 
-      <Card className="bg-secondary border border-border">
+      <Card>
         <CardHeader>
           <CardTitle>Latest Version</CardTitle>
         </CardHeader>
@@ -49,7 +49,7 @@ export default function AboutPage() {
         </CardContent>
       </Card>
 
-      <Card className="bg-secondary border border-border">
+      <Card>
         <CardHeader>
           <CardTitle>Latest Releases</CardTitle>
         </CardHeader>

@@ -2,12 +2,12 @@ import { Card, CardContent } from "@/components/ui/card"
 
 export function DynamicHeader() {
   return (
-    <Card className="mb-8 border border-primary/30 bg-secondary">
+    <Card className="mb-8 border">
       <CardContent className="p-6">
         <h1 className="text-3xl font-bold mb-4">
           Fashion Buyer's Club:
           <br />
-          <span className="text-primary">Democratizing the Wholesale Fashion Industry</span>
+          <span className="text-black">Democratizing the Wholesale Fashion Industry</span>
         </h1>
         <p className="text-lg mb-4">
           Fashion Buyer's Club is a groundbreaking platform connecting small-scale designers, artists, and craftspeople

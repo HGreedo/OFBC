@@ -37,7 +37,7 @@ export default function InspirationPage() {
 
   return (
     <div className="space-y-12">
-      <header className="bg-secondary border border-primary/30 py-12">
+      <header className="bg-black text-white py-12">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl font-bold mb-4">Inspiration Corner</h1>
           <p className="text-xl">
