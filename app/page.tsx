@@ -70,19 +70,19 @@ export default function Home() {
       title: "Summer Collection Launch",
       excerpt: "Designer Aiden Patel unveils sustainable summer line",
       date: "2023-06-15",
-      link: "/news/1",
+      link: "/resources/community-news/summer-collection-launch",
     },
     {
       title: "New Messaging Feature",
       excerpt: "Connect directly with boutiques and designers",
       date: "2023-06-10",
-      link: "/news/2",
+      link: "/resources/community-news/designer-workshop-series",
     },
     {
       title: "Fashion for a Cause",
       excerpt: "Local designers unite for charity fashion show",
       date: "2023-06-05",
-      link: "/news/3",
+      link: "/resources/community-news/annual-fashion-show-fundraiser",
     },
   ]
 
@@ -91,19 +91,19 @@ export default function Home() {
       title: "Luxotica Acquires Sunglasses Co",
       excerpt: "Major move in the eyewear industry",
       date: "2023-06-14",
-      link: "/news/4",
+      link: "/resources/industry-news/luxotica-acquires-sunglasses-co",
     },
     {
       title: "Nike's Sustainable Initiative",
       excerpt: "Sportswear giant commits to eco-friendly materials",
       date: "2023-06-12",
-      link: "/news/5",
+      link: "/resources/industry-news/sustainable-fashion-report-2025",
     },
     {
       title: "Vogue's September Issue",
       excerpt: "Celebrating diversity in fashion",
       date: "2023-06-08",
-      link: "/news/6",
+      link: "/resources/industry-news/ai-in-fashion-design",
     },
   ]
 
