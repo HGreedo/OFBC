@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/navbar"
 import { PageTransition } from "@/components/page-transition"
 import { cn } from "@/lib/utils"
-import "@/styles/globals.css"
+import "@/app/globals.css"
 import { Montserrat } from "next/font/google"
 import Link from "next/link"
 import type React from "react"

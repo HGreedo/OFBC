@@ -231,7 +231,12 @@ const eventsByMonth: Record<string, Event[]> = {
   ],
 }
 
-export function EventCalendar() {
+// Update the component props to include initialSelectedEventId
+interface EventCalendarProps {
+  initialSelectedEventId?: string | null
+}
+
+export function EventCalendar({ initialSelectedEventId = null }: EventCalendarProps) {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
@@ -270,6 +275,36 @@ export function EventCalendar() {
     }, 500)
     return () => clearTimeout(timer)
   }, [currentMonth])
+
+  // Add useEffect to handle initialSelectedEventId
+  useEffect(() => {
+    if (initialSelectedEventId) {
+      // Find the event
+      const event = Object.values(eventsByMonth)
+        .flat()
+        .find((event) => event.id === initialSelectedEventId)
+
+      if (event) {
+        // Find which month the event is in
+        for (const [month, events] of Object.entries(eventsByMonth)) {
+          if (events.some((e) => e.id === initialSelectedEventId)) {
+            // Set the current month
+            const newIndex = months.indexOf(month)
+            setDirection(newIndex > currentMonthIndex ? 1 : -1)
+            setCurrentMonthIndex(newIndex)
+            setCurrentMonth(month)
+
+            // Open the event details
+            setTimeout(() => {
+              setSelectedEvent(event)
+              setIsDialogOpen(true)
+            }, 500)
+            break
+          }
+        }
+      }
+    }
+  }, [initialSelectedEventId])
 
   return (
     <div className="space-y-6">
