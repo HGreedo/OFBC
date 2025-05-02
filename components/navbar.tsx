@@ -34,10 +34,10 @@ const navItems = [
     name: "Resources",
     href: "/resources",
     submenu: [
+      { name: "Events", href: "/resources/events" },
       { name: "Inspiration Corner", href: "/resources/inspiration" },
       { name: "Community News", href: "/resources/community-news" },
       { name: "Industry News", href: "/resources/industry-news" },
-      { name: "Events", href: "/resources/events" },
     ],
   },
   {

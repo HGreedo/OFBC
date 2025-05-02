@@ -1,5 +1,8 @@
 import { InspirationSection } from "@/components/inspiration-section"
 import { NewsCard } from "@/components/news-card"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { Calendar, Lightbulb, Newspaper, Globe } from "lucide-react"
 
 export default function ResourcesPage() {
   const communityNews = [
@@ -48,13 +51,71 @@ export default function ResourcesPage() {
     <div className="space-y-12">
       <h1 className="text-4xl font-bold mb-8">Resources</h1>
 
+      {/* Events Section - Added as the first section */}
       <section>
-        <h2 className="text-3xl font-bold mb-6">Inspiration Corner</h2>
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center">
+            <Calendar className="h-6 w-6 mr-2" />
+            <h2 className="text-3xl font-bold">Events</h2>
+          </div>
+          <Link href="/resources/events">
+            <Button>View All Events</Button>
+          </Link>
+        </div>
+        <div className="bg-gray-50 p-6 rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Upcoming Fashion Events</h3>
+              <p className="mb-4">
+                Discover fashion events happening around the world. Connect with designers, boutiques, and industry
+                professionals at trade shows, workshops, and networking events.
+              </p>
+              <div className="flex items-center space-x-4">
+                <Link href="/resources/events">
+                  <Button variant="outline" className="flex items-center">
+                    <Globe className="mr-2 h-4 w-4" />
+                    Explore 3D Globe
+                  </Button>
+                </Link>
+                <Link href="/resources/events?tab=calendar">
+                  <Button variant="outline" className="flex items-center">
+                    <Calendar className="mr-2 h-4 w-4" />
+                    View Calendar
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <div className="bg-white p-4 rounded-md shadow-sm">
+                <h4 className="font-semibold">Paris Fashion Week</h4>
+                <p className="text-sm text-gray-600">October 5-12, 2025 • Paris, France</p>
+              </div>
+              <div className="bg-white p-4 rounded-md shadow-sm">
+                <h4 className="font-semibold">Sustainable Fashion Summit</h4>
+                <p className="text-sm text-gray-600">September 22-23, 2025 • Seattle, USA</p>
+              </div>
+              <div className="bg-white p-4 rounded-md shadow-sm">
+                <h4 className="font-semibold">Emerging Designers Showcase</h4>
+                <p className="text-sm text-gray-600">June 18, 2025 • Los Angeles, USA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="flex items-center mb-6">
+          <Lightbulb className="h-6 w-6 mr-2" />
+          <h2 className="text-3xl font-bold">Inspiration Corner</h2>
+        </div>
         <InspirationSection />
       </section>
 
       <section>
-        <h2 className="text-3xl font-bold mb-6">Community News</h2>
+        <div className="flex items-center mb-6">
+          <Newspaper className="h-6 w-6 mr-2" />
+          <h2 className="text-3xl font-bold">Community News</h2>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {communityNews.map((news, index) => (
             <NewsCard key={index} {...news} />
@@ -63,7 +124,10 @@ export default function ResourcesPage() {
       </section>
 
       <section>
-        <h2 className="text-3xl font-bold mb-6">Industry News</h2>
+        <div className="flex items-center mb-6">
+          <Newspaper className="h-6 w-6 mr-2" />
+          <h2 className="text-3xl font-bold">Industry News</h2>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {industryNews.map((news, index) => (
             <NewsCard key={index} {...news} />
