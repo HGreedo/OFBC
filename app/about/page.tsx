@@ -4,19 +4,28 @@ import { ContactForm } from "@/components/contact-form"
 export default function AboutPage() {
   const latestReleases = [
     {
+      version: "3.3.0",
+      date: "April 28, 2025",
+      features: [
+        "Updated site color scheme with black text accents",
+        "Fixed navigation links for blog posts",
+        "Added new community and industry news articles",
+        "Improved overall accessibility and readability",
+      ],
+    },
+    {
+      version: "3.2.5",
+      date: "April 15, 2025",
+      features: [
+        "Enhanced blog post layouts",
+        "Fixed broken links throughout the site",
+        "Improved mobile responsiveness for news sections",
+      ],
+    },
+    {
       version: "3.2.0",
-      date: "May 2, 2025",
+      date: "April 3, 2025",
       features: ["Added messaging system", "Improved search functionality", "Bug fixes and performance improvements"],
-    },
-    {
-      version: "3.1.5",
-      date: "March 15, 2025",
-      features: ["Enhanced user profiles", "New designer submission form", "Minor UI tweaks"],
-    },
-    {
-      version: "3.1.0",
-      date: "February 10, 2025",
-      features: ["Introduced boutique profiles", "Added event calendar", "Improved mobile responsiveness"],
     },
   ]
 
@@ -44,8 +53,8 @@ export default function AboutPage() {
           <CardTitle>Latest Version</CardTitle>
         </CardHeader>
         <CardContent>
-          <p>Current Version: 3.2</p>
-          <p>Release Date: May 2, 2025</p>
+          <p>Current Version: 3.3</p>
+          <p>Release Date: April 28, 2025</p>
         </CardContent>
       </Card>
 
