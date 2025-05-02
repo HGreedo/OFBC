@@ -4,7 +4,7 @@ export default function SummerCollectionLaunchPost() {
   return (
     <BlogPostLayout
       title="Local Boutique 'Chic Styles' Launches Summer Collection"
-      date="July 1, 2023"
+      date="July 1, 2025"
       author="Community Correspondent"
     >
       <p>

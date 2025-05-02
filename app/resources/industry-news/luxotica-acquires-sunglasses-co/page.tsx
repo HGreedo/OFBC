@@ -4,7 +4,7 @@ export default function LuxoticaAcquiresSunglassesCoPost() {
   return (
     <BlogPostLayout
       title="Luxotica Acquires Sunglasses Co. in Major Industry Shakeup"
-      date="June 28, 2023"
+      date="June 28, 2025"
       author="Industry Analyst"
     >
       <p>

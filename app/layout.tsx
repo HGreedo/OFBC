@@ -27,7 +27,7 @@ export default function RootLayout({
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row justify-between items-center">
               <div className="text-center sm:text-left mb-4 sm:mb-0">
-                © 2023 FashionBuyersClub. All rights reserved.
+                © 2025 FashionBuyersClub. All rights reserved.
               </div>
               <div className="space-x-4">
                 <Link href="/terms" className="text-gray-600 hover:text-gray-900">
