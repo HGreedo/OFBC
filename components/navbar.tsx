@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 import { AuthModal } from "@/components/auth-modal"
+import { Button } from "@/components/ui/button"
 
 const navItems = [
   {
@@ -49,6 +50,11 @@ const navItems = [
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
   const pathname = usePathname()
+
+  const handleLogout = () => {
+    localStorage.removeItem("isAuthenticated")
+    window.location.reload()
+  }
 
   return (
     <nav className="bg-white shadow py-4">
@@ -114,8 +120,11 @@ export function Navbar() {
           </div>
 
           {/* Auth Button (Desktop) */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center space-x-4">
             <AuthModal />
+            <Button variant="outline" onClick={handleLogout}>
+              Log Out
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -187,8 +196,11 @@ export function Navbar() {
               ))}
             </div>
             <div className="pt-4 pb-3 border-t border-gray-200">
-              <div className="px-4 flex items-center">
+              <div className="px-4 flex items-center space-x-2">
                 <AuthModal />
+                <Button variant="outline" onClick={handleLogout} size="sm">
+                  Log Out
+                </Button>
               </div>
             </div>
           </motion.div>
