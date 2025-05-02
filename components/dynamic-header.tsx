@@ -2,18 +2,24 @@ import { Card, CardContent } from "@/components/ui/card"
 
 export function DynamicHeader() {
   return (
-    <Card className="bg-gradient-to-r from-purple-500 to-pink-500 text-white mb-8">
+    <Card className="mb-8 border border-primary/30 bg-secondary">
       <CardContent className="p-6">
-        <h1 className="text-3xl font-bold mb-4">Welcome to FashionBuyersClub</h1>
+        <h1 className="text-3xl font-bold mb-4">
+          Fashion Buyer's Club:
+          <br />
+          <span className="text-primary">Democratizing the Wholesale Fashion Industry</span>
+        </h1>
         <p className="text-lg mb-4">
-          FashionBuyersClub is a free platform designed to foster relationships and help you plan your next collection.
+          Fashion Buyer's Club is a groundbreaking platform connecting small-scale designers, artists, and craftspeople
+          with independent boutiques across the U.S. and eventually worldwide. We eliminate middlemen by fostering
+          direct B2B connections, helping creatives scale their operations, plan wholesale logistics, and transform
+          side-hustles into sustainable careers.
         </p>
-        <ul className="list-disc list-inside space-y-2">
-          <li>Connect with boutiques and designers</li>
-          <li>Discover the latest trends and inspirations</li>
-          <li>Plan and showcase your collections</li>
-          <li>Collaborate with industry professionals</li>
-        </ul>
+        <p className="text-lg mb-4">
+          Our vision is to revolutionize how independent fashion creators reach their market, providing the tools and
+          infrastructure they need to thrive in an industry traditionally dominated by larger players. Join us in
+          creating a more equitable fashion ecosystem.
+        </p>
       </CardContent>
     </Card>
   )

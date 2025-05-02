@@ -56,7 +56,7 @@ export default function CommunityNewsPage() {
 
   return (
     <div className="space-y-12">
-      <header className="bg-primary text-primary-foreground py-12">
+      <header className="bg-secondary border border-primary/30 py-12">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl font-bold mb-4">Community News</h1>
           <p className="text-xl">
@@ -68,13 +68,13 @@ export default function CommunityNewsPage() {
       </header>
       <div className="container mx-auto px-4 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {newsItems.map((item, index) => (
-          <Card key={index}>
+          <Card key={index} className="bg-secondary border border-border">
             <CardHeader>
               <CardTitle>{item.title}</CardTitle>
             </CardHeader>
             <CardContent>
               <p>{item.description}</p>
-              <p className="text-sm text-gray-500 mt-2">{item.date}</p>
+              <p className="text-sm text-muted-foreground mt-2">{item.date}</p>
             </CardContent>
             <CardFooter>
               <Link href={item.link} passHref>
