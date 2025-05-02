@@ -23,52 +23,75 @@ export function ArcGisGlobe({ eventLocations, onEventSelect }: ArcGisGlobeProps)
   const mapRef = useRef<HTMLDivElement>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const viewRef = useRef<any>(null)
+  const mountedRef = useRef(true)
   const [scriptLoaded, setScriptLoaded] = useState(false)
 
-  // Function to safely load the ArcGIS script
+  // Set mountedRef to false when component unmounts
+  useEffect(() => {
+    return () => {
+      mountedRef.current = false
+    }
+  }, [])
+
+  // Function to load ArcGIS script
   useEffect(() => {
     if (typeof window === "undefined") return
 
-    // Only load the script once
-    if (window.esriLoaded) {
+    console.log("Attempting to load ArcGIS script...")
+
+    // Check if script is already loaded
+    if (document.querySelector('script[src*="arcgis"]')) {
+      console.log("ArcGIS script already exists in DOM")
       setScriptLoaded(true)
       return
     }
 
+    // Load CSS first
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "https://js.arcgis.com/4.28/esri/themes/light/main.css"
+    document.head.appendChild(link)
+
+    // Then load the script
     const script = document.createElement("script")
     script.src = "https://js.arcgis.com/4.28/"
     script.async = true
-    script.crossOrigin = "anonymous" // Add crossOrigin attribute
-
-    // Add proper error handling
-    script.onerror = (e) => {
-      console.error("Failed to load ArcGIS script:", e)
-      setError("Failed to load the map. Please check your internet connection and try again.")
-      setLoading(false)
-    }
 
     script.onload = () => {
-      window.esriLoaded = true
-      setScriptLoaded(true)
+      console.log("ArcGIS script loaded successfully")
+      if (mountedRef.current) {
+        setScriptLoaded(true)
+      }
+    }
+
+    script.onerror = (e) => {
+      console.error("Failed to load ArcGIS script:", e)
+      if (mountedRef.current) {
+        setError("Failed to load the map. Please check your internet connection and try again.")
+        setLoading(false)
+      }
     }
 
     document.head.appendChild(script)
-
-    return () => {
-      // Clean up is not needed for script tags that were added to the DOM
-    }
   }, [])
 
   // Initialize the map once the script is loaded
   useEffect(() => {
-    if (!scriptLoaded || !mapRef.current || typeof window === "undefined") return
+    if (!scriptLoaded || !mapRef.current) {
+      console.log("Script not loaded or map ref not available yet")
+      return
+    }
 
-    let view: any = null
-    let cleanup: (() => void) | null = null
+    console.log("Initializing ArcGIS map...")
 
+    // Create a cleanup function
+    let cleanup = () => {}
+
+    // Initialize the map
     const initMap = () => {
       try {
-        // Use a try-catch block to catch any errors during initialization
+        // Use require with a simpler approach
         window.require(
           [
             "esri/Map",
@@ -78,47 +101,23 @@ export function ArcGisGlobe({ eventLocations, onEventSelect }: ArcGisGlobeProps)
             "esri/geometry/Point",
             "esri/PopupTemplate",
             "esri/symbols/SimpleMarkerSymbol",
-            "esri/layers/TileLayer",
-            "esri/layers/ElevationLayer",
-            "esri/Ground",
           ],
-          (
-            Map: any,
-            SceneView: any,
-            GraphicsLayer: any,
-            Graphic: any,
-            Point: any,
-            PopupTemplate: any,
-            SimpleMarkerSymbol: any,
-            TileLayer: any,
-            ElevationLayer: any,
-            Ground: any,
-          ) => {
-            // Create a custom basemap with white oceans and black continents
-            const customBasemap = {
-              baseLayers: [
-                new TileLayer({
-                  url: "https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer",
-                  // Apply invert effect to make oceans white and land black
-                  effect: "invert() brightness(1.1)",
-                }),
-              ],
-            }
+          (Map, SceneView, GraphicsLayer, Graphic, Point, PopupTemplate, SimpleMarkerSymbol) => {
+            if (!mountedRef.current || !mapRef.current) return
 
-            // Create a simple map with custom styling
+            console.log("ArcGIS modules loaded, creating map...")
+
+            // Create a simple map
             const map = new Map({
-              basemap: customBasemap,
-              ground: new Ground({
-                surfaceColor: [0, 0, 0], // Black ground surface
-              }),
+              basemap: "gray-vector",
             })
 
             // Create a graphics layer for event points
             const eventsLayer = new GraphicsLayer()
             map.add(eventsLayer)
 
-            // Create the view with minimal configuration
-            view = new SceneView({
+            // Create the view
+            const view = new SceneView({
               container: mapRef.current,
               map: map,
               camera: {
@@ -137,15 +136,21 @@ export function ArcGisGlobe({ eventLocations, onEventSelect }: ArcGisGlobeProps)
                 starsEnabled: false,
                 atmosphereEnabled: false,
               },
-              highlightOptions: {
-                color: [255, 148, 61], // #ff943d
-                fillOpacity: 0.4,
+              ui: {
+                components: ["zoom"],
               },
             })
 
-            // Wait for the view to be ready before adding graphics
+            // Store the view reference
+            viewRef.current = view
+
+            // Wait for the view to be ready
             view
               .when(() => {
+                if (!mountedRef.current) return
+
+                console.log("ArcGIS view ready, adding event markers...")
+
                 // Add event locations to the map
                 eventLocations.forEach((event) => {
                   // Create a point
@@ -154,25 +159,26 @@ export function ArcGisGlobe({ eventLocations, onEventSelect }: ArcGisGlobeProps)
                     latitude: event.coordinates[1],
                   })
 
-                  // Create a marker symbol with the requested orange color
+                  // Create a marker symbol
                   const markerSymbol = new SimpleMarkerSymbol({
                     color: [255, 148, 61, 0.9], // #ff943d with 0.9 opacity
                     outline: {
                       color: [255, 255, 255], // White outline
                       width: 2,
                     },
-                    size: 14, // Slightly larger for better visibility
+                    size: 14,
                   })
 
-                  // Create a popup template with custom styling
+                  // Create a popup template
                   const popupTemplate = new PopupTemplate({
                     title: event.name,
                     content: `
-                      <p><strong>Location:</strong> ${event.location}</p>
-                      <p><strong>Date:</strong> ${event.date}</p>
-                      <button class="event-details-btn" data-event-id="${event.id}" style="background-color: #ff943d;">View Details</button>
-                    `,
-                    overwriteActions: true,
+                  <div style="padding: 10px;">
+                    <p><strong>Location:</strong> ${event.location}</p>
+                    <p><strong>Date:</strong> ${event.date}</p>
+                    <button class="event-details-btn" data-event-id="${event.id}">View Details</button>
+                  </div>
+                `,
                   })
 
                   // Create a graphic and add it to the layer
@@ -191,54 +197,104 @@ export function ArcGisGlobe({ eventLocations, onEventSelect }: ArcGisGlobeProps)
                   eventsLayer.add(graphic)
                 })
 
-                // Use the popup-open event instead of watch
-                view.on("click", () => {
-                  // Wait for the popup to be created in the DOM
-                  setTimeout(() => {
-                    const buttons = document.querySelectorAll(".event-details-btn")
-                    buttons.forEach((button) => {
-                      button.addEventListener("click", (e) => {
-                        const eventId = (e.target as HTMLElement).getAttribute("data-event-id")
-                        if (eventId) {
-                          onEventSelect(eventId)
-                          view.popup.close()
-                        }
-                      })
+                // Handle click events
+                view.on("click", (event) => {
+                  if (!mountedRef.current) return
+
+                  view
+                    .hitTest(event)
+                    .then((response) => {
+                      if (!mountedRef.current) return
+
+                      const graphic = response.results.filter((result) => result.graphic.layer === eventsLayer)[0]
+                        ?.graphic
+
+                      if (graphic) {
+                        // Open the popup
+                        view.popup.open({
+                          features: [graphic],
+                          location: event.mapPoint,
+                        })
+
+                        // Add event listeners to buttons
+                        setTimeout(() => {
+                          if (!mountedRef.current) return
+
+                          const buttons = document.querySelectorAll(".event-details-btn")
+                          buttons.forEach((button) => {
+                            button.addEventListener("click", (e) => {
+                              const eventId = (e.target as HTMLElement).getAttribute("data-event-id")
+                              if (eventId && mountedRef.current) {
+                                onEventSelect(eventId)
+                                if (viewRef.current) {
+                                  viewRef.current.popup.close()
+                                }
+                              }
+                            })
+                          })
+                        }, 100)
+                      }
                     })
-                  }, 100)
+                    .catch((err) => {
+                      console.warn("Error in hitTest:", err)
+                    })
                 })
 
-                setLoading(false)
+                // Update the UI state
+                if (mountedRef.current) {
+                  console.log("ArcGIS map fully initialized and ready")
+                  setLoading(false)
+                }
               })
-              .catch((err: any) => {
-                console.error("Error initializing view:", err)
-                setError("Error initializing the map view. Please try again later.")
-                setLoading(false)
+              .catch((err) => {
+                console.error("Error in view initialization:", err)
+                if (mountedRef.current) {
+                  setError("Failed to initialize the map view. Please try again later.")
+                  setLoading(false)
+                }
               })
 
-            // Set up cleanup function
+            // Setup cleanup function
             cleanup = () => {
-              if (view) {
-                view.container = null
-                view.destroy()
+              console.log("Cleaning up ArcGIS resources...")
+              if (viewRef.current) {
+                try {
+                  if (viewRef.current.popup) {
+                    viewRef.current.popup.close()
+                  }
+                  viewRef.current.container = null
+                  viewRef.current.destroy()
+                  viewRef.current = null
+                } catch (e) {
+                  console.warn("Error during view cleanup:", e)
+                }
               }
+            }
+          },
+          (err) => {
+            console.error("Error loading ArcGIS modules:", err)
+            if (mountedRef.current) {
+              setError("Failed to load map components. Please try the Calendar View instead.")
+              setLoading(false)
             }
           },
         )
       } catch (err) {
         console.error("Error in ArcGIS initialization:", err)
-        setError(`Failed to initialize the map: ${err instanceof Error ? err.message : String(err)}`)
-        setLoading(false)
+        if (mountedRef.current) {
+          setError(`Failed to initialize the map: ${err instanceof Error ? err.message : String(err)}`)
+          setLoading(false)
+        }
       }
     }
 
-    // Initialize the map with a slight delay to ensure the DOM is ready
-    const timer = setTimeout(initMap, 100)
+    // Initialize with a slight delay to ensure DOM is ready
+    const timer = setTimeout(initMap, 500)
 
     // Cleanup function
     return () => {
       clearTimeout(timer)
-      if (cleanup) cleanup()
+      cleanup()
     }
   }, [scriptLoaded, eventLocations, onEventSelect])
 
@@ -281,6 +337,5 @@ export function ArcGisGlobe({ eventLocations, onEventSelect }: ArcGisGlobeProps)
 declare global {
   interface Window {
     require: any
-    esriLoaded: boolean
   }
 }

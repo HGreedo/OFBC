@@ -1,14 +1,16 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { EventCalendar } from "@/components/event-calendar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import dynamic from "next/dynamic"
 import { Card, CardContent } from "@/components/ui/card"
 import { Loader2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import dynamic from "next/dynamic"
+import { SimpleGlobeFallback } from "@/components/simple-globe-fallback"
 
-// Dynamically import the ArcGisGlobe component with no SSR
-const DynamicArcGisGlobe = dynamic(() => import("@/components/arcgis-globe").then((mod) => mod.ArcGisGlobe), {
+// Dynamically import the Globe component with no SSR
+const Globe = dynamic(() => import("react-globe.gl").then((mod) => mod.default), {
   ssr: false,
   loading: () => (
     <Card>
@@ -133,9 +135,25 @@ const eventLocations = [
   },
 ]
 
+// Format data for react-globe.gl
+const globeData = eventLocations.map((event) => ({
+  id: event.id,
+  lat: event.coordinates[1],
+  lng: event.coordinates[0],
+  name: event.name,
+  location: event.location,
+  date: event.date,
+  color: "#ff943d",
+  size: 0.5,
+}))
+
 export default function EventsPage() {
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState("globe")
+  const globeRef = useRef<any>(null)
+  const [globeReady, setGlobeReady] = useState(false)
+  const [globeError, setGlobeError] = useState(false)
+  const [popupInfo, setPopupInfo] = useState<any>(null)
 
   const handleEventSelect = (eventId: string) => {
     setSelectedEventId(eventId)
@@ -146,98 +164,140 @@ export default function EventsPage() {
     }, 100)
   }
 
+  // Auto-rotate the globe
+  useEffect(() => {
+    if (globeRef.current && globeReady) {
+      globeRef.current.controls().autoRotate = true
+      globeRef.current.controls().autoRotateSpeed = 0.5
+    }
+  }, [globeReady])
+
+  // Handle errors with the globe
+  useEffect(() => {
+    const handleError = () => {
+      console.error("Error loading globe component")
+      setGlobeError(true)
+    }
+
+    window.addEventListener("error", handleError)
+
+    return () => {
+      window.removeEventListener("error", handleError)
+    }
+  }, [])
+
   return (
-    <>
-      {/* Update the ArcGIS CSS styles to match our new color scheme */}
-      <style jsx global>{`
-  /* ArcGIS custom styles */
-  .esri-view {
-    height: 100%;
-    width: 100%;
-  }
-  
-  .esri-popup__main-container {
-    max-width: 300px;
-    background-color: white;
-    color: black;
-  }
-  
-  .esri-popup__header-title {
-    font-size: 16px;
-    font-weight: bold;
-    color: black;
-  }
-  
-  .event-details-btn {
-    background-color: #ff943d;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    margin-top: 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.2s;
-  }
-  
-  .event-details-btn:hover {
-    background-color: #e87f2d;
-  }
-  
-  /* Make the globe controls more visible */
-  .esri-ui-corner .esri-component {
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-  
-  .esri-widget--button {
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-  }
-  
-  .esri-widget--button:hover {
-    background-color: #ff943d;
-  }
-`}</style>
-
-      <div className="space-y-12">
-        <header className="bg-black text-white py-12">
-          <div className="container mx-auto px-4">
-            <h1 className="text-4xl font-bold mb-4">Events</h1>
-            <p className="text-xl">
-              Stay connected with the fashion community through our curated calendar of industry events, workshops,
-              trade shows, and networking opportunities. Explore our interactive 3D globe to discover fashion events
-              happening around the world.
-            </p>
-          </div>
-        </header>
-
+    <div className="space-y-12">
+      <header className="bg-black text-white py-12">
         <div className="container mx-auto px-4">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="mb-6">
-              <TabsTrigger value="globe">3D Globe View</TabsTrigger>
-              <TabsTrigger value="calendar">Calendar View</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="globe">
-              <div className="space-y-6">
-                <h2 className="text-2xl font-bold">Explore Fashion Events Worldwide</h2>
-                <p className="text-gray-600">
-                  Interact with the 3D globe to discover fashion events happening around the world. Click on any marker
-                  to see event details and navigate to the calendar for more information.
-                </p>
-                <DynamicArcGisGlobe eventLocations={eventLocations} onEventSelect={handleEventSelect} />
-                <p className="text-sm text-gray-500 italic">
-                  Tip: Click and drag to rotate the globe. Use the scroll wheel to zoom in and out.
-                </p>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="calendar" id="event-calendar">
-              <EventCalendar initialSelectedEventId={selectedEventId} />
-            </TabsContent>
-          </Tabs>
+          <h1 className="text-4xl font-bold mb-4">Events</h1>
+          <p className="text-xl">
+            Stay connected with the fashion community through our curated calendar of industry events, workshops, trade
+            shows, and networking opportunities. Explore our interactive 3D globe to discover fashion events happening
+            around the world.
+          </p>
         </div>
+      </header>
+
+      <div className="container mx-auto px-4">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="mb-6">
+            <TabsTrigger value="globe">3D Globe View</TabsTrigger>
+            <TabsTrigger value="calendar">Calendar View</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="globe">
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold">Explore Fashion Events Worldwide</h2>
+              <p className="text-gray-600">
+                Interact with the 3D globe to discover fashion events happening around the world. Click on any marker to
+                see event details and navigate to the calendar for more information.
+              </p>
+
+              {globeError ? (
+                <SimpleGlobeFallback eventLocations={eventLocations} onEventSelect={handleEventSelect} />
+              ) : (
+                <Card className="relative overflow-hidden">
+                  <div className="w-full h-[500px] md:h-[600px] lg:h-[700px]">
+                    <Globe
+                      ref={globeRef}
+                      globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+                      backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+                      pointsData={globeData}
+                      pointLat="lat"
+                      pointLng="lng"
+                      pointColor="color"
+                      pointRadius="size"
+                      pointAltitude={0.01}
+                      pointLabel={(d: any) => `
+                        <div style="
+                          background-color: white; 
+                          border-radius: 5px; 
+                          padding: 10px; 
+                          box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                          width: 200px;
+                        ">
+                          <div style="font-weight: bold; margin-bottom: 5px;">${d.name}</div>
+                          <div style="margin-bottom: 5px;">${d.location}</div>
+                          <div style="margin-bottom: 10px;">${d.date}</div>
+                          <button 
+                            style="
+                              background-color: #ff943d; 
+                              color: white; 
+                              border: none; 
+                              padding: 5px 10px; 
+                              border-radius: 4px; 
+                              cursor: pointer;
+                              width: 100%;
+                            "
+                            onclick="window.handleGlobeEventClick('${d.id}')"
+                          >
+                            View Details
+                          </button>
+                        </div>
+                      `}
+                      onGlobeReady={() => {
+                        setGlobeReady(true)
+                        // Make the function available globally for the onClick in the HTML label
+                        window.handleGlobeEventClick = (eventId: string) => {
+                          handleEventSelect(eventId)
+                        }
+                      }}
+                      onPointClick={(point: any) => {
+                        setPopupInfo(point)
+                      }}
+                    />
+                  </div>
+                </Card>
+              )}
+
+              <div className="flex justify-between items-center">
+                <p className="text-sm text-gray-500 mt-2">
+                  If you experience any issues with the 3D globe, please try the Calendar View instead.
+                </p>
+                <Button variant="outline" onClick={() => setActiveTab("calendar")} className="text-sm">
+                  Switch to Calendar View
+                </Button>
+              </div>
+
+              <p className="text-sm text-gray-500 italic">
+                Tip: Click and drag to rotate the globe. Use the scroll wheel to zoom in and out.
+              </p>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="calendar" id="event-calendar">
+            <EventCalendar initialSelectedEventId={selectedEventId} />
+          </TabsContent>
+        </Tabs>
       </div>
-    </>
+    </div>
   )
+}
+
+// Add this to make TypeScript happy with the window properties
+declare global {
+  interface Window {
+    handleGlobeEventClick: (eventId: string) => void
+  }
 }
