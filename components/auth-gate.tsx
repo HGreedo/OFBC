@@ -37,7 +37,7 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
         localStorage.setItem("isAuthenticated", "true")
         setIsAuthenticated(true)
       } else {
-        setError("Invalid username or password. Try fashionbuyersclub/indiemusic103195.")
+        setError("Invalid username or password. Please try again or contact support.")
       }
       setIsLoading(false)
     }, 1000)
