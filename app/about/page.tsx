@@ -4,18 +4,18 @@ import { ContactForm } from "@/components/contact-form"
 export default function AboutPage() {
   const latestReleases = [
     {
-      version: "1.2.0",
-      date: "2023-06-15",
+      version: "3.2.0",
+      date: "May 2, 2025",
       features: ["Added messaging system", "Improved search functionality", "Bug fixes and performance improvements"],
     },
     {
-      version: "1.1.5",
-      date: "2023-05-20",
+      version: "3.1.5",
+      date: "March 15, 2025",
       features: ["Enhanced user profiles", "New designer submission form", "Minor UI tweaks"],
     },
     {
-      version: "1.1.0",
-      date: "2023-04-10",
+      version: "3.1.0",
+      date: "February 10, 2025",
       features: ["Introduced boutique profiles", "Added event calendar", "Improved mobile responsiveness"],
     },
   ]
@@ -30,10 +30,11 @@ export default function AboutPage() {
         </CardHeader>
         <CardContent>
           <p>
-            FashionBuyersClub is a cutting-edge platform designed to connect fashion boutiques with small-scale
-            designers, creating a vibrant community for fashion enthusiasts. Our platform facilitates seamless
-            collaboration, enabling boutiques to discover unique designs and helping designers showcase their creations
-            to a wider audience.
+            Fashion Buyer's Club is a wholesale platform built for independent fashion creatives and boutiques. We
+            connect designers, artists, and craftspeople directly with buyers—no middlemen, no trade shows—just
+            meaningful, curated partnerships. With built-in AI tools for trend forecasting, a vibrant marketplace, and
+            streamlined communications, we empower creatives to scale their businesses and boutiques to discover fresh,
+            original talent.
           </p>
         </CardContent>
       </Card>
@@ -43,8 +44,8 @@ export default function AboutPage() {
           <CardTitle>Latest Version</CardTitle>
         </CardHeader>
         <CardContent>
-          <p>Current Version: 1.2.0</p>
-          <p>Release Date: June 15, 2023</p>
+          <p>Current Version: 3.2</p>
+          <p>Release Date: May 2, 2025</p>
         </CardContent>
       </Card>
 
