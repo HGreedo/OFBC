@@ -60,7 +60,8 @@
     "zod": "latest",
     "@emotion/is-prop-valid": "latest",
     "framer-motion": "latest",
-    "react-globe.gl": "latest"
+    "react-globe.gl": "latest",
+    "@supabase/supabase-js": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",
