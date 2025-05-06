@@ -4,7 +4,6 @@ import { FeaturedCard } from "@/components/featured-card"
 import { NewsCard } from "@/components/news-card"
 import { DynamicHeader } from "@/components/dynamic-header"
 import { InspirationSection } from "@/components/inspiration-section"
-import { SupabaseDebug } from "@/components/supabase-debug"
 import { motion } from "framer-motion"
 
 export default function Home() {
@@ -129,9 +128,6 @@ export default function Home() {
 
   return (
     <motion.div className="space-y-12 py-8" initial="hidden" animate="show" variants={container}>
-      {/* Add the Supabase debug component */}
-      <SupabaseDebug />
-
       <motion.div variants={item}>
         <DynamicHeader />
       </motion.div>
