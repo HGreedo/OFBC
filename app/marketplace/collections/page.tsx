@@ -11,7 +11,7 @@ export default function CollectionsPage() {
       id: "sustainable",
       name: "Sustainable Collection",
       description: "Eco-friendly designs for a better future",
-      image: "/placeholder.svg?height=600&width=800&query=sustainable fashion collection",
+      image: "/sustainable-fashion.png",
       designerCount: 8,
       productCount: 32,
     },
@@ -19,7 +19,7 @@ export default function CollectionsPage() {
       id: "evening-wear",
       name: "Evening Wear",
       description: "Elegant designs for special occasions",
-      image: "/placeholder.svg?height=600&width=800&query=luxury evening wear collection",
+      image: "/luxury-evening-wear.png",
       designerCount: 5,
       productCount: 24,
     },
@@ -27,7 +27,7 @@ export default function CollectionsPage() {
       id: "streetwear",
       name: "Streetwear",
       description: "Urban styles with attitude",
-      image: "/placeholder.svg?height=600&width=800&query=urban streetwear collection",
+      image: "/urban-streetwear-collection.png",
       designerCount: 6,
       productCount: 28,
     },
@@ -35,7 +35,7 @@ export default function CollectionsPage() {
       id: "resort",
       name: "Resort Collection",
       description: "Vacation-ready styles for sun and sea",
-      image: "/placeholder.svg?height=600&width=800&query=resort wear collection",
+      image: "/resort-wear-collection.png",
       designerCount: 4,
       productCount: 20,
     },
@@ -43,7 +43,7 @@ export default function CollectionsPage() {
       id: "minimalist",
       name: "Minimalist",
       description: "Clean lines and timeless silhouettes",
-      image: "/placeholder.svg?height=600&width=800&query=minimalist fashion collection",
+      image: "/minimalist-fashion-collection.png",
       designerCount: 7,
       productCount: 30,
     },
@@ -51,7 +51,7 @@ export default function CollectionsPage() {
       id: "artisanal",
       name: "Artisanal",
       description: "Handcrafted pieces celebrating traditional techniques",
-      image: "/placeholder.svg?height=600&width=800&query=artisanal fashion collection",
+      image: "/artisanal-fashion.png",
       designerCount: 9,
       productCount: 36,
     },
@@ -77,17 +77,16 @@ export default function CollectionsPage() {
               <Link
                 key={collection.id}
                 href={`/marketplace/collections/${collection.id}`}
-                className="group relative overflow-hidden rounded-lg"
+                className="group relative block h-full overflow-hidden rounded-lg"
               >
-                <div className="aspect-w-3 aspect-h-2 w-full">
+                <div className="relative h-80 w-full overflow-hidden">
                   <Image
                     src={collection.image || "/placeholder.svg"}
                     alt={collection.name}
-                    width={800}
-                    height={600}
-                    className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                    fill
+                    className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-6">
                     <h3 className="text-xl font-bold text-white">{collection.name}</h3>
                     <p className="mt-1 text-sm text-gray-200">{collection.description}</p>

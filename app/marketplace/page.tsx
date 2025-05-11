@@ -163,7 +163,7 @@ export default function MarketplacePage() {
                 id="7"
                 name="Flores Eternas Blouse"
                 price={350}
-                image="/placeholder.svg?height=400&width=400&query=mexican embroidered blouse"
+                image="/placeholder.svg?key=bkljd"
                 designer="Gabriel Mendoza"
                 designerId="7"
                 category="Artisanal"
@@ -173,7 +173,7 @@ export default function MarketplacePage() {
                 id="8"
                 name="Deconstruction Jacket"
                 price={890}
-                image="/placeholder.svg?height=400&width=400&query=avant garde fashion jacket"
+                image="/placeholder.svg?key=hpn75"
                 designer="Olivia Kim"
                 designerId="8"
                 category="Avant-Garde"
@@ -192,7 +192,7 @@ export default function MarketplacePage() {
             <DesignerProductsSection
               designerId="1"
               designerName="Emma Thompson"
-              designerImage="/placeholder.svg?height=200&width=200&query=fashion designer portrait"
+              designerImage="/fashion-designer-portrait.png"
               designerBio="Emma Thompson is a visionary designer known for her innovative approach to evening wear with a focus on sustainability and avant-garde designs."
             />
           </Suspense>
@@ -212,48 +212,54 @@ export default function MarketplacePage() {
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <Link href="/marketplace/collections/sustainable" className="group relative overflow-hidden rounded-lg">
-              <div className="aspect-w-3 aspect-h-2 w-full">
+            <Link
+              href="/marketplace/collections/sustainable"
+              className="group relative block h-full overflow-hidden rounded-lg"
+            >
+              <div className="relative h-80 w-full overflow-hidden">
                 <Image
-                  src="/placeholder.svg?height=400&width=600&query=sustainable fashion collection"
+                  src="/sustainable-fashion.png"
                   alt="Sustainable Collection"
-                  width={600}
-                  height={400}
-                  className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                  fill
+                  className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6">
                   <h3 className="text-xl font-bold text-white">Sustainable Collection</h3>
                   <p className="mt-1 text-sm text-gray-200">Eco-friendly designs for a better future</p>
                 </div>
               </div>
             </Link>
-            <Link href="/marketplace/collections/evening-wear" className="group relative overflow-hidden rounded-lg">
-              <div className="aspect-w-3 aspect-h-2 w-full">
+            <Link
+              href="/marketplace/collections/evening-wear"
+              className="group relative block h-full overflow-hidden rounded-lg"
+            >
+              <div className="relative h-80 w-full overflow-hidden">
                 <Image
-                  src="/placeholder.svg?height=400&width=600&query=luxury evening wear collection"
+                  src="/luxury-evening-wear.png"
                   alt="Evening Wear Collection"
-                  width={600}
-                  height={400}
-                  className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                  fill
+                  className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6">
                   <h3 className="text-xl font-bold text-white">Evening Wear</h3>
                   <p className="mt-1 text-sm text-gray-200">Elegant designs for special occasions</p>
                 </div>
               </div>
             </Link>
-            <Link href="/marketplace/collections/streetwear" className="group relative overflow-hidden rounded-lg">
-              <div className="aspect-w-3 aspect-h-2 w-full">
+            <Link
+              href="/marketplace/collections/streetwear"
+              className="group relative block h-full overflow-hidden rounded-lg"
+            >
+              <div className="relative h-80 w-full overflow-hidden">
                 <Image
-                  src="/placeholder.svg?height=400&width=600&query=urban streetwear collection"
+                  src="/urban-streetwear-collection.png"
                   alt="Streetwear Collection"
-                  width={600}
-                  height={400}
-                  className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                  fill
+                  className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6">
                   <h3 className="text-xl font-bold text-white">Streetwear</h3>
                   <p className="mt-1 text-sm text-gray-200">Urban styles with attitude</p>

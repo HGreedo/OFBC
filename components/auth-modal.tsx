@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-export function AuthModal() {
+export function AuthModal({ children }: { children?: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false)
   const [isLogin, setIsLogin] = useState(true)
   const [username, setUsername] = useState("")
@@ -34,9 +34,11 @@ export function AuthModal() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" onClick={() => setIsOpen(true)}>
-          Sign In
-        </Button>
+        {children || (
+          <Button variant="default" onClick={() => setIsOpen(true)}>
+            Sign In
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

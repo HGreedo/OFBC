@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { AuthModal } from "@/components/auth-modal"
 import { Button } from "@/components/ui/button"
+import { DialogTrigger } from "@/components/ui/dialog"
 
 const navItems = [
   {
@@ -205,9 +206,28 @@ export function Navbar() {
               ))}
             </div>
             <div className="pt-4 pb-3 border-t border-gray-200">
-              <div className="px-4 flex items-center space-x-2">
-                <AuthModal />
-                <Button variant="outline" onClick={handleLogout} size="sm">
+              <div className="px-4 flex flex-col space-y-2">
+                <div className="w-full">
+                  <DialogTrigger asChild>
+                    <Button
+                      className="w-full"
+                      onClick={() => {
+                        setMobileMenuOpen(false)
+                        // Any other logic needed for sign in
+                      }}
+                    >
+                      Sign In
+                    </Button>
+                  </DialogTrigger>
+                </div>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    handleLogout()
+                    setMobileMenuOpen(false)
+                  }}
+                  className="w-full"
+                >
                   Log Out
                 </Button>
               </div>
