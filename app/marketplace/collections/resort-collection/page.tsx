@@ -16,13 +16,13 @@ export default function ResortCollectionPage() {
   return (
     <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
-      <section className="relative bg-blue-800 text-white">
+      <section className="relative bg-blue-50 text-gray-900">
         <div className="absolute inset-0 z-0">
           <Image
             src="/resort-wear-collection.png"
             alt="Resort Collection"
             fill
-            className="object-cover opacity-60"
+            className="object-cover opacity-30"
             priority
           />
         </div>
@@ -30,22 +30,26 @@ export default function ResortCollectionPage() {
           <div className="max-w-3xl">
             <Link
               href="/marketplace/collections"
-              className="mb-6 inline-flex items-center text-sm font-medium text-blue-100 hover:text-white"
+              className="mb-6 inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Collections
             </Link>
             <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">Resort Collection</h1>
-            <p className="mb-8 text-lg text-blue-100 md:text-xl">
+            <p className="mb-8 text-lg text-gray-700 md:text-xl">
               Vacation-ready styles for sun-soaked destinations. Discover effortless elegance with our curated selection
               of resort wear designed for warm weather escapes.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Badge className="bg-blue-700 hover:bg-blue-600 px-3 py-1 text-sm">Beachwear</Badge>
-              <Badge className="bg-blue-700 hover:bg-blue-600 px-3 py-1 text-sm">Tropical Prints</Badge>
-              <Badge className="bg-blue-700 hover:bg-blue-600 px-3 py-1 text-sm">Lightweight Fabrics</Badge>
-              <Badge className="bg-blue-700 hover:bg-blue-600 px-3 py-1 text-sm">Vacation Essentials</Badge>
-              <Badge className="bg-blue-700 hover:bg-blue-600 px-3 py-1 text-sm">Summer Styles</Badge>
+              <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200 px-3 py-1 text-sm">Beachwear</Badge>
+              <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200 px-3 py-1 text-sm">Tropical Prints</Badge>
+              <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200 px-3 py-1 text-sm">
+                Lightweight Fabrics
+              </Badge>
+              <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200 px-3 py-1 text-sm">
+                Vacation Essentials
+              </Badge>
+              <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200 px-3 py-1 text-sm">Summer Styles</Badge>
             </div>
           </div>
         </div>
@@ -99,7 +103,7 @@ export default function ResortCollectionPage() {
               id="r1"
               name="Tropical Print Maxi Dress"
               price={180}
-              image="/tropical-print-maxi-dress.png"
+              image="/designer-swimsuit.png"
               designer="Coastal Couture"
               designerId="coastal1"
               category="Dresses"
@@ -109,7 +113,7 @@ export default function ResortCollectionPage() {
               id="r2"
               name="Linen Beach Shirt"
               price={95}
-              image="/linen-beach-shirt.png"
+              image="/bamboo-lounge-set.png"
               designer="Island Threads"
               designerId="island1"
               category="Tops"
@@ -119,7 +123,7 @@ export default function ResortCollectionPage() {
               id="r3"
               name="Cabana Stripe Swimsuit"
               price={120}
-              image="/cabana-stripe-swimsuit.png"
+              image="/designer-swimsuit.png"
               designer="Azure Swim"
               designerId="azure1"
               category="Swimwear"
@@ -129,7 +133,7 @@ export default function ResortCollectionPage() {
               id="r4"
               name="Raffia Beach Tote"
               price={85}
-              image="/raffia-beach-tote.png"
+              image="/pineapple-leather-handbag.png"
               designer="Coastal Couture"
               designerId="coastal1"
               category="Accessories"
@@ -181,7 +185,7 @@ export default function ResortCollectionPage() {
               id="r5"
               name="Palm Print Kimono"
               price={110}
-              image="/palm-print-kimono.png"
+              image="/bamboo-lounge-set.png"
               designer="Island Threads"
               designerId="island1"
               category="Outerwear"
@@ -190,7 +194,7 @@ export default function ResortCollectionPage() {
               id="r6"
               name="Linen Palazzo Pants"
               price={95}
-              image="/linen-palazzo-pants.png"
+              image="/bamboo-lounge-set.png"
               designer="Coastal Couture"
               designerId="coastal1"
               category="Bottoms"
@@ -199,7 +203,7 @@ export default function ResortCollectionPage() {
               id="r7"
               name="Straw Sun Hat"
               price={65}
-              image="/straw-sun-hat.png"
+              image="/pineapple-leather-handbag.png"
               designer="Azure Accessories"
               designerId="azure2"
               category="Accessories"
@@ -208,7 +212,7 @@ export default function ResortCollectionPage() {
               id="r8"
               name="Resort Linen Shorts"
               price={75}
-              image="/resort-linen-shorts.png"
+              image="/bamboo-lounge-set.png"
               designer="Island Threads"
               designerId="island1"
               category="Bottoms"
@@ -217,7 +221,7 @@ export default function ResortCollectionPage() {
               id="r9"
               name="Crochet Beach Cover-Up"
               price={120}
-              image="/crochet-beach-coverup.png"
+              image="/designer-swimsuit.png"
               designer="Azure Swim"
               designerId="azure1"
               category="Swimwear"
@@ -226,7 +230,7 @@ export default function ResortCollectionPage() {
               id="r10"
               name="Espadrille Sandals"
               price={85}
-              image="/espadrille-sandals.png"
+              image="/cork-leather-wallet.png"
               designer="Coastal Couture"
               designerId="coastal1"
               category="Footwear"
@@ -235,7 +239,7 @@ export default function ResortCollectionPage() {
               id="r11"
               name="Tropical Print Shirt"
               price={90}
-              image="/tropical-print-shirt.png"
+              image="/organic-cotton-tshirt.png"
               designer="Island Threads"
               designerId="island1"
               category="Tops"
@@ -244,7 +248,7 @@ export default function ResortCollectionPage() {
               id="r12"
               name="Bamboo Handle Clutch"
               price={75}
-              image="/bamboo-handle-clutch.png"
+              image="/pineapple-leather-handbag.png"
               designer="Azure Accessories"
               designerId="azure2"
               category="Accessories"
