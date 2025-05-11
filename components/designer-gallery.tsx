@@ -40,75 +40,75 @@ const designers = [
   },
   {
     id: 4,
-    name: "Aiden Patel",
-    state: "Illinois",
-    city: "Chicago",
+    name: "Malik Johnson",
+    state: "New York",
+    city: "New York City",
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-    specialty: "Sustainable Fashion",
+    specialty: "Luxury Menswear",
   },
   {
     id: 5,
-    name: "Olivia Kim",
-    state: "Texas",
-    city: "Austin",
+    name: "Yuki Tanaka",
+    state: "International",
+    city: "Kyoto, Japan",
     image:
       "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1995&q=80",
-    specialty: "Avant-Garde",
+    specialty: "Traditional-Contemporary Fusion",
   },
   {
     id: 6,
-    name: "Ethan Nguyen",
-    state: "Washington",
-    city: "Seattle",
+    name: "Aisha Okafor",
+    state: "International",
+    city: "Lagos, Nigeria",
     image:
       "https://images.unsplash.com/photo-1512794268250-65fd4cd7441f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-    specialty: "Minimalist",
+    specialty: "Contemporary African",
   },
   {
     id: 7,
-    name: "Isabella Martinez",
-    state: "Arizona",
-    city: "Phoenix",
+    name: "Gabriel Mendoza",
+    state: "International",
+    city: "Mexico City, Mexico",
     image:
       "https://images.unsplash.com/photo-1470468969717-61d5d54fd036?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2044&q=80",
-    specialty: "Bohemian",
+    specialty: "Sustainable Luxury",
   },
   {
     id: 8,
-    name: "Noah Johnson",
-    state: "Massachusetts",
-    city: "Boston",
+    name: "Olivia Kim",
+    state: "International",
+    city: "Seoul, South Korea",
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-    specialty: "Tailored Suits",
+    specialty: "Avant-Garde",
   },
   {
     id: 9,
-    name: "Mia Williams",
-    state: "Georgia",
-    city: "Atlanta",
+    name: "Hassan Mahmoud",
+    state: "International",
+    city: "Dubai, UAE",
     image:
       "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1995&q=80",
-    specialty: "Urban Chic",
+    specialty: "Modern Modest",
   },
   {
     id: 10,
-    name: "Lucas Brown",
-    state: "Colorado",
-    city: "Denver",
+    name: "Isabella Vega",
+    state: "International",
+    city: "Barcelona, Spain",
     image:
       "https://images.unsplash.com/photo-1512794268250-65fd4cd7441f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-    specialty: "Outdoor Apparel",
+    specialty: "Circular Fashion",
   },
   {
     id: 11,
-    name: "Ava Garcia",
-    state: "Nevada",
-    city: "Las Vegas",
+    name: "Raj Patel",
+    state: "International",
+    city: "Mumbai, India",
     image:
       "https://images.unsplash.com/photo-1470468969717-61d5d54fd036?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2044&q=80",
-    specialty: "Stage Costumes",
+    specialty: "Contemporary Indian",
   },
   {
     id: 12,
@@ -117,7 +117,43 @@ const designers = [
     city: "Portland",
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-    specialty: "Eco-Friendly Fashion",
+    specialty: "Eco-Friendly Outdoor",
+  },
+  {
+    id: 13,
+    name: "Jamal Washington",
+    state: "Georgia",
+    city: "Atlanta",
+    image:
+      "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1995&q=80",
+    specialty: "Urban Sportswear",
+  },
+  {
+    id: 14,
+    name: "Nina Petrov",
+    state: "International",
+    city: "Paris, France",
+    image:
+      "https://images.unsplash.com/photo-1512794268250-65fd4cd7441f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+    specialty: "Haute Couture",
+  },
+  {
+    id: 15,
+    name: "David Wong",
+    state: "Washington",
+    city: "Seattle",
+    image:
+      "https://images.unsplash.com/photo-1470468969717-61d5d54fd036?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2044&q=80",
+    specialty: "Functional Minimalism",
+  },
+  {
+    id: 16,
+    name: "Carmen Diaz",
+    state: "Texas",
+    city: "San Antonio",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+    specialty: "Western Contemporary",
   },
 ]
 

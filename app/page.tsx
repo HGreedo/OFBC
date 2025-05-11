@@ -3,8 +3,10 @@
 import { FeaturedCard } from "@/components/featured-card"
 import { NewsCard } from "@/components/news-card"
 import { DynamicHeader } from "@/components/dynamic-header"
-import { InspirationSection } from "@/components/inspiration-section"
 import { motion } from "framer-motion"
+import Link from "next/link"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Image from "next/image"
 
 export default function Home() {
   // Enhanced placeholder data
@@ -49,22 +51,22 @@ export default function Home() {
       tags: ["Evening Wear", "Couture", "Innovative"],
     },
     {
-      name: "Liam Chen",
-      description: "Streetwear with an edge",
+      name: "Aisha Okafor",
+      description: "Contemporary African fashion pioneer",
       image:
         "https://images.unsplash.com/photo-1512794268250-65fd4cd7441f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-      link: "/designers/2",
-      location: "Tokyo, Japan",
-      tags: ["Streetwear", "Urban", "Edgy"],
+      link: "/designers/6",
+      location: "Lagos, Nigeria",
+      tags: ["Contemporary African", "Sustainable", "Artisanal"],
     },
     {
-      name: "Sofia Rodriguez",
-      description: "Colorful and bold swimwear",
+      name: "Malik Johnson",
+      description: "Redefining luxury menswear",
       image:
         "https://images.unsplash.com/photo-1470468969717-61d5d54fd036?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2044&q=80",
-      link: "/designers/3",
-      location: "Rio de Janeiro, Brazil",
-      tags: ["Swimwear", "Colorful", "Bold"],
+      link: "/designers/4",
+      location: "New York, USA",
+      tags: ["Luxury Menswear", "Tailoring", "Heritage"],
     },
   ]
 
@@ -107,6 +109,34 @@ export default function Home() {
       excerpt: "Celebrating diversity in fashion",
       date: "2023-06-08",
       link: "/resources/industry-news/ai-in-fashion-design",
+    },
+  ]
+
+  // Inspiration items with links to their blog posts
+  const inspirationItems = [
+    {
+      title: "Sustainable Fabrics Revolution",
+      content: "Explore innovative eco-friendly materials reshaping the fashion industry.",
+      image: "/placeholder.svg?height=200&width=300&text=Sustainable+Fabrics",
+      link: "/resources/inspiration/sustainable-fabrics-revolution",
+    },
+    {
+      title: "Retro Futurism in Fashion",
+      content: "Discover how designers are blending vintage aesthetics with futuristic elements.",
+      image: "/placeholder.svg?height=200&width=300&text=Retro+Futurism",
+      link: "/resources/inspiration/retro-futurism-in-fashion",
+    },
+    {
+      title: "Cultural Fusion Couture",
+      content: "See how global cultural influences are creating unique fashion statements.",
+      image: "/placeholder.svg?height=200&width=300&text=Cultural+Fusion",
+      link: "/resources/inspiration/cultural-fusion-couture",
+    },
+    {
+      title: "Tech-Integrated Apparel",
+      content: "Learn about the latest in wearable technology and smart fabrics.",
+      image: "/placeholder.svg?height=200&width=300&text=Tech+Apparel",
+      link: "/resources/inspiration/tech-integrated-apparel",
     },
   ]
 
@@ -156,14 +186,45 @@ export default function Home() {
 
       <motion.section variants={item}>
         <h2 className="text-3xl font-bold mb-6">Inspiration Corner</h2>
-        <InspirationSection />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {inspirationItems.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className="h-[250px]" // Fixed height for all cards
+            >
+              <Link href={item.link} className="block h-full">
+                <Card className="rounded-lg border bg-card text-card-foreground h-full cursor-pointer hover:shadow-md transition-shadow flex flex-col">
+                  <CardHeader className="flex-shrink-0">
+                    <CardTitle className="text-lg line-clamp-1">{item.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex items-center space-x-4 flex-grow overflow-hidden">
+                    <div className="flex-shrink-0 w-24 h-24 relative">
+                      <Image
+                        src={item.image || "/placeholder.svg"}
+                        alt={item.title}
+                        fill
+                        objectFit="cover"
+                        className="rounded-md"
+                      />
+                    </div>
+                    <p className="line-clamp-4 text-sm">{item.content}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       </motion.section>
 
       <motion.section variants={item}>
         <h2 className="text-3xl font-bold mb-6">Community News</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {communityNews.map((news, index) => (
-            <motion.div key={index} variants={item}>
+            <motion.div key={index} variants={item} className="h-[200px]">
               <NewsCard {...news} />
             </motion.div>
           ))}
@@ -174,7 +235,7 @@ export default function Home() {
         <h2 className="text-3xl font-bold mb-6">Industry News</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {industryNews.map((news, index) => (
-            <motion.div key={index} variants={item}>
+            <motion.div key={index} variants={item} className="h-[200px]">
               <NewsCard {...news} />
             </motion.div>
           ))}

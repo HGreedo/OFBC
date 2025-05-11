@@ -119,6 +119,78 @@ const boutiques = [
       "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
     style: "Beach",
   },
+  {
+    id: 13,
+    name: "Nordic Minimalist",
+    state: "Minnesota",
+    city: "Minneapolis",
+    image:
+      "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    style: "Scandinavian",
+  },
+  {
+    id: 14,
+    name: "Atelier Noir",
+    state: "New York",
+    city: "New York",
+    image:
+      "https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    style: "Avant-garde",
+  },
+  {
+    id: 15,
+    name: "Mountain Maven",
+    state: "Colorado",
+    city: "Boulder",
+    image:
+      "https://images.unsplash.com/photo-1542060748-10c28b62716f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    style: "Outdoor",
+  },
+  {
+    id: 16,
+    name: "Luxe & Local",
+    state: "Oregon",
+    city: "Portland",
+    image:
+      "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    style: "Artisanal",
+  },
+  {
+    id: 17,
+    name: "Future Form",
+    state: "California",
+    city: "San Francisco",
+    image:
+      "https://images.unsplash.com/photo-1551488831-68b4d0d92d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    style: "Futuristic",
+  },
+  {
+    id: 18,
+    name: "Coastal Chic",
+    state: "Florida",
+    city: "Miami Beach",
+    image:
+      "https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    style: "Resort Wear",
+  },
+  {
+    id: 19,
+    name: "Bohemian Rhapsody",
+    state: "Texas",
+    city: "Austin",
+    image:
+      "https://images.unsplash.com/photo-1528476513691-07e6f563d97f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    style: "Bohemian",
+  },
+  {
+    id: 20,
+    name: "Heritage House",
+    state: "Kentucky",
+    city: "Louisville",
+    image:
+      "https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    style: "Classic",
+  },
 ]
 
 export function BoutiqueGallery() {
