@@ -16,7 +16,7 @@ export const BlogPostLayout: FC<BlogPostLayoutProps> = ({ title, date, author, c
           Published on {date} by {author}
         </p>
       </header>
-      <div className="prose max-w-none">{children}</div>
+      <div className="prose prose-lg max-w-none">{children}</div>
     </article>
   )
 }

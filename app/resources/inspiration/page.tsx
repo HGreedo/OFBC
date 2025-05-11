@@ -4,34 +4,39 @@ export default function InspirationPage() {
   const inspirationItems = [
     {
       title: "Sustainable Fabrics Revolution",
-      description: "Explore innovative eco-friendly materials reshaping the fashion industry.",
-      imageUrl: "/placeholder.svg?height=200&width=300",
-      link: "/resources/inspiration/sustainable-fabrics-revolution",
+      content: "Explore innovative eco-friendly materials reshaping the fashion industry.",
+      image: "/placeholder.svg?height=200&width=300&text=Sustainable+Fabrics",
+      slug: "sustainable-fabrics-revolution",
     },
     {
       title: "Retro Futurism in Fashion",
-      description: "Discover how designers are blending vintage aesthetics with futuristic elements.",
-      imageUrl: "/placeholder.svg?height=200&width=300",
+      content: "Discover how designers are blending vintage aesthetics with futuristic elements.",
+      image: "/placeholder.svg?height=200&width=300&text=Retro+Futurism",
+      slug: "retro-futurism-in-fashion",
     },
     {
       title: "Cultural Fusion Couture",
-      description: "See how global cultural influences are creating unique fashion statements.",
-      imageUrl: "/placeholder.svg?height=200&width=300",
+      content: "See how global cultural influences are creating unique fashion statements.",
+      image: "/placeholder.svg?height=200&width=300&text=Cultural+Fusion",
+      slug: "cultural-fusion-couture",
     },
     {
       title: "Tech-Integrated Apparel",
-      description: "Learn about the latest in wearable technology and smart fabrics.",
-      imageUrl: "/placeholder.svg?height=200&width=300",
+      content: "Learn about the latest in wearable technology and smart fabrics.",
+      image: "/placeholder.svg?height=200&width=300&text=Tech+Apparel",
+      slug: "tech-integrated-apparel",
     },
     {
       title: "Minimalist Luxury",
-      description: "Explore the growing trend of understated elegance in high-end fashion.",
-      imageUrl: "/placeholder.svg?height=200&width=300",
+      content: "Explore the growing trend of understated elegance in high-end fashion.",
+      image: "/placeholder.svg?height=200&width=300&text=Minimalist+Luxury",
+      slug: "minimalist-luxury",
     },
     {
       title: "Upcycled Fashion Art",
-      description: "Get inspired by designers turning waste into wearable masterpieces.",
-      imageUrl: "/placeholder.svg?height=200&width=300",
+      content: "Get inspired by designers turning waste into wearable masterpieces.",
+      image: "/placeholder.svg?height=200&width=300&text=Upcycled+Fashion",
+      slug: "upcycled-fashion-art",
     },
   ]
 

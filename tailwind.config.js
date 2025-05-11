@@ -74,7 +74,40 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: "100%",
+            h2: {
+              fontWeight: "700",
+              marginTop: "2em",
+              marginBottom: "1em",
+            },
+            h3: {
+              fontWeight: "600",
+              marginTop: "1.5em",
+              marginBottom: "0.75em",
+            },
+            ul: {
+              marginTop: "1em",
+              marginBottom: "1em",
+              paddingLeft: "1.5em",
+            },
+            li: {
+              marginTop: "0.5em",
+              marginBottom: "0.5em",
+            },
+            "li > p": {
+              marginTop: "0.5em",
+              marginBottom: "0.5em",
+            },
+            strong: {
+              fontWeight: "600",
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 }
