@@ -32,6 +32,15 @@ const navItems = [
     ],
   },
   {
+    name: "Marketplace",
+    href: "/marketplace",
+    submenu: [
+      { name: "All Products", href: "/marketplace" },
+      { name: "New Arrivals", href: "/marketplace/new-arrivals" },
+      { name: "Collections", href: "/marketplace/collections" },
+    ],
+  },
+  {
     name: "Resources",
     href: "/resources",
     submenu: [
