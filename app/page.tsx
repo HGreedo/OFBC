@@ -132,12 +132,6 @@ export default function Home() {
       image: "/placeholder.svg?height=200&width=300&text=Cultural+Fusion",
       link: "/resources/inspiration/cultural-fusion-couture",
     },
-    {
-      title: "Tech-Integrated Apparel",
-      content: "Learn about the latest in wearable technology and smart fabrics.",
-      image: "/placeholder.svg?height=200&width=300&text=Tech+Apparel",
-      link: "/resources/inspiration/tech-integrated-apparel",
-    },
   ]
 
   const container = {
